@@ -30,18 +30,15 @@ app.use(function (req, res, next) {
 
 app.post('/send', function (req, res) {
 
-  let senderName = 'Gata';
-  let senderEmail = req.body.contactFormEmail;
   let messageSubject = req.body.contactFormSubjects;
   let messageText = req.body.contactFormMessage;
-  let copyToSender = req.body.contactFormCopy;
+
 
   let mailOptions = {
     to: ['luismsms14@gmail.com'], // Enter here the email address on which you want to send emails from your customers
-    from: senderName,
+    from: Tufinho,
     subject: messageSubject,
     text: "Mensagem:" + messageText,
-    replyTo: senderEmail
   };
 
   if (senderName === '') {
