@@ -5,17 +5,11 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 const transporter = nodemailer.createTransport({
-
-  host: 'smtp.gmail.com',
-  provider: 'gmail',
-  port: 465,
-  secure: true,
+  host: 'smtp.ethereal.email',
+  port: 587,
   auth: {
-    user: 'tufinho.wish@gamil.com', // Enter here email address from which you want to send emails
-    pass: 'tufinho_123' // Enter here password for email account from which you want to send emails
-  },
-  tls: {
-  rejectUnauthorized: false
+      user: 'freeda44@ethereal.email',
+      pass: 'nsJuDDjShxf4sHqz1E'
   }
 });
 
@@ -41,22 +35,6 @@ app.post('/send', function (req, res) {
     text: "Mensagem:" + messageText,
   };
 
-  if (senderName === '') {
-    res.status(400);
-    res.send({
-    message: 'Bad request'
-    });
-    return;
-  }
-
-  if (senderEmail === '') {
-    res.status(400);
-    res.send({
-    message: 'Bad request'
-    });
-    return;
-  }
-
   if (messageSubject === '') {
     res.status(400);
     res.send({
@@ -71,10 +49,6 @@ app.post('/send', function (req, res) {
     message: 'Bad request'
     });
     return;
-  }
-
-  if (copyToSender) {
-    mailOptions.to.push(senderEmail);
   }
 
   transporter.sendMail(mailOptions, function (error, response) {
