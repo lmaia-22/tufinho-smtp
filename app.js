@@ -29,7 +29,7 @@ app.post('/send', function (req, res) {
 
 
   let mailOptions = {
-    to: ['luimsm14@gmail.com'], // Enter here the email address on which you want to send emails from your customers
+    to: ['luismsm14@gmail.com'], // Enter here the email address on which you want to send emails from your customers
     from: "Tufinho",
     subject: messageSubject,
     text: "Mensagem:" + messageText,
