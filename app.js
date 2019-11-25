@@ -5,8 +5,8 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 const transporter = nodemailer.createTransport({
-  host: 'imap.ethereal.email',
-  port: 993,
+  host: 'smtp.ethereal.email',
+  port: 587,
   auth: {
       user: 'freeda44@ethereal.email',
       pass: 'nsJuDDjShxf4sHqz1E'
