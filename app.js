@@ -5,8 +5,8 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.ethereal.email',
-  port: 587,
+  host: 'imap.ethereal.email',
+  port: 993,
   auth: {
       user: 'freeda44@ethereal.email',
       pass: 'nsJuDDjShxf4sHqz1E'
@@ -29,7 +29,7 @@ app.post('/send', function (req, res) {
 
 
   let mailOptions = {
-    to: ['luismsm14@gmail.com'], // Enter here the email address on which you want to send emails from your customers
+    to: 'luismsm14@gmail.com', // Enter here the email address on which you want to send emails from your customers
     from: ['Tufinho'],
     subject: messageSubject,
     text: "Mensagem:" + messageText,
