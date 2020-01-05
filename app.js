@@ -5,11 +5,11 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.ethereal.email',
-  port: 587,
+  host: 'mail.smtp2go.com',
+  port: 2525,
   auth: {
-      user: 'freeda44@ethereal.email',
-      pass: 'nsJuDDjShxf4sHqz1E'
+      user: 'luismsm14@gmail.com',
+      pass: 'Zmoyb3lxdDA3MXQw'
   }
 });
 
