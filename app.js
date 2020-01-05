@@ -8,8 +8,8 @@ const transporter = nodemailer.createTransport({
   host: 'mail.smtp2go.com',
   port: 2525,
   auth: {
-      user: 'luismsm14@gmail.com',
-      pass: 'Zmoyb3lxdDA3MXQw'
+      user: 'smtptufinho',
+      pass: 'NmV4amgxaTh0dG4w'
   }
 });
 
