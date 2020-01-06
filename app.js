@@ -8,8 +8,8 @@ const transporter = nodemailer.createTransport({
   host: 'mail.smtp2go.com',
   port: 2525,
   auth: {
-      user: 'tufinho',
-      pass: 'ajM1Y3RuMXNtczAw'
+      user: 'lmaia-22',
+      pass: 'qkixK89TjuZr'
   }
 });
 
@@ -29,7 +29,7 @@ app.post('/send', function (req, res) {
 
 
   let mailOptions = {
-    from: '1150438@isep.ipp.pt',
+    from: 'lmaia@casadamusica.com',
     to: 'luismsm14@gmail.com', // Enter here the email address on which you want to send emails from your customers
     subject: messageSubject,
     text: "Mensagem:" + messageText,
