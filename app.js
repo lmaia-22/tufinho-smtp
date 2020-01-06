@@ -29,7 +29,7 @@ app.post('/send', function (req, res) {
 
 
   let mailOptions = {
-    from: '1150438@isep.ipp.pt',
+    from: 'luismsm14@gmail.com',
     to: 'luismsm14@gmail.com', // Enter here the email address on which you want to send emails from your customers
     subject: messageSubject,
     text: "Mensagem:" + messageText,
