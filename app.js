@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const transporter = nodemailer.createTransport({
   host: 'mail.smtp2go.com',
-  port: 2525,
+  port: 25,
   secure: true,
   auth: {
       user: 'lmaia-22',
