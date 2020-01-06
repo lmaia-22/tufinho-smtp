@@ -6,12 +6,16 @@ const bodyParser = require('body-parser');
 
 const transporter = nodemailer.createTransport({
   host: 'mail.smtp2go.com',
-  port: 25,
-  secure: true,
+  port: 2525,
+  secureConnection: false,
+  requireTLS: true,
   auth: {
       user: 'lmaia-22',
       pass: 'qkixK89TjuZr'
-  }
+  },
+  tls: {
+    ciphers:'SSLv3'
+}
 });
 
 app.use(bodyParser.json());
@@ -30,7 +34,7 @@ app.post('/send', function (req, res) {
 
 
   let mailOptions = {
-    from: 'lmaia@casadamusica.com',
+    from: 'luismsm14@gmail.com',
     to: 'luismsm14@gmail.com', // Enter here the email address on which you want to send emails from your customers
     subject: messageSubject,
     text: "Mensagem:" + messageText,
