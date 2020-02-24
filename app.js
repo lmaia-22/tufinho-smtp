@@ -2,6 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 let cron = require('node-cron');
 var rp = require('request-promise');
+var cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
