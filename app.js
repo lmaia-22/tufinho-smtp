@@ -124,10 +124,12 @@ app.get('/quote', function (req, res) {
       
   }); 
 
+
 app.post('/kitty', function (req, res) {
 
   var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
   const baseUrl = "https://api.thecatapi.com/v1/images/search";
+  const baseUrl1 = "https://quotes.rest/qod.json?category=inspire";
 
       var options = {
         uri: baseUrl,
@@ -138,30 +140,27 @@ app.post('/kitty', function (req, res) {
         }
       };
 
-      rp(options)
-      .then(function (resp) {
-           console.log("data collected");
-           console.log(resp[0]["url"]);
-
-           const baseUrl1 = "https://quotes.rest/qod.json?category=inspire";
-
       var options1 = {
         uri: baseUrl1,
         method: 'GET',
         json: true,
       }
 
+      rp(options)
+      .then(function (resp) {
+           console.log("data collected");
+           console.log(resp[0]["url"]);
+
       rp(options1)
       .then(function (resp1) {
            console.log("data collected");
            console.log(resp1.contents.quotes[0].quote);
-      });
 
   let mailOptions = {
     from: 'luismsm14@gmail.com',
     to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
     subject: 'Bom dia fofinha!',
-    html: '<p>'+ resp1.contents.quotes[0].quote + '</p><h1>Tem um bom dia de trabalho!</h1><h2><b>Adoro-te! <3</b></h2>',
+    html: '<h1>Tem um bom dia de trabalho!</h1><h3>Vai-te a eles gatinha assanhada ;)</h3><h2><b>Adoro-te! <3</b></h2>',
     attachments: [
         { // Use a URL as an attachment
           filename: 'Cutecat.png',
@@ -179,8 +178,9 @@ app.post('/kitty', function (req, res) {
         res.end('sent');
       }
     });
-  });
 });
+      });
+    });
 
 app.listen(port, function () {
   console.log('Express started on port: ', port);
@@ -193,6 +193,7 @@ app.listen(port, function () {
       method: 'POST',
       json: true,
     };
+    
     rp(options)
   //});
 });
