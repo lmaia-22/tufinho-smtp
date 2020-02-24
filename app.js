@@ -126,7 +126,7 @@ app.post('/kitty', function (req, res) {
 
 app.listen(port, function () {
   console.log('Express started on port: ', port);
-  cron.schedule('40 14 * * *', () => {
+  //cron.schedule('00 15 * * *', () => {
 
     Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
@@ -136,5 +136,5 @@ app.listen(port, function () {
       json: true,
     };
     rp(options)
-  });
+  //});
 });
