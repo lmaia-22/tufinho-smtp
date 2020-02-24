@@ -1,5 +1,8 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
+let cron = require('node-cron');
+var rp = require('request-promise');
+
 const app = express();
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
@@ -29,27 +32,11 @@ app.post('/send', function (req, res) {
 
 
   let mailOptions = {
-    from: 'lmaia@casadamusica.com',
+    from: 'luismsm14@gmail.com',
     to: 'luismsm14@gmail.com', // Enter here the email address on which you want to send emails from your customers
     subject: messageSubject,
     text: "Mensagem:" + messageText,
   };
-
-  if (messageSubject === '') {
-    res.status(400);
-    res.send({
-    message: 'Bad request'
-    });
-    return;
-  }
-
-  if (messageText === '') {
-    res.status(400);
-    res.send({
-    message: 'Bad request'
-    });
-    return;
-  }
 
   transporter.sendMail(mailOptions, function (error, response) {
     if (error) {
@@ -62,6 +49,87 @@ app.post('/send', function (req, res) {
   });
 });
 
+//send kittys daily
+
+app.get('/cat', function (req, res) {
+
+  var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
+  const baseUrl = "https://api.thecatapi.com/v1/images/search";
+
+      var options = {
+        uri: baseUrl,
+        method: 'GET',
+        json: true,
+        headers: {
+          'x-api-key': apiKey
+        }
+      };
+
+      let data = "";
+      rp(options)
+      .then(function (resp) {
+           console.log("data collected");
+           console.log(resp[0]["url"]);
+           res.send(resp);
+      });
+  }); 
+
+app.post('/kitty', function (req, res) {
+
+  var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
+  const baseUrl = "https://api.thecatapi.com/v1/images/search";
+
+      var options = {
+        uri: baseUrl,
+        method: 'GET',
+        json: true,
+        headers: {
+          'x-api-key': apiKey
+        }
+      };
+
+      let data = "";
+      rp(options)
+      .then(function (resp) {
+           console.log("data collected");
+           console.log(resp[0]["url"]);
+
+  let mailOptions = {
+    from: 'luismsm14@gmail.com',
+    to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
+    subject: 'Bom dia fofinha!',
+    html: '<h1>Para começares logo a manhã com um sorriso Pepsodent</h1><h3>Tem um bom dia de trabalho!</h3><h2><b>Adoro-te! <3</b></h2>',
+    attachments: [
+        { // Use a URL as an attachment
+          filename: 'Cutecat.png',
+          path: resp[0]["url"]
+      }
+    ]
+  };
+  
+    transporter.sendMail(mailOptions, function (error, response) {
+      if (error) {
+        console.log(error);
+        res.end('error');
+      } else {
+        console.log('Message sent: ', response);
+        res.end('sent');
+      }
+    });
+  });
+});
+
 app.listen(port, function () {
   console.log('Express started on port: ', port);
+  cron.schedule('* * * * *', () => {
+
+    Url = 'http://localhost:3000/kitty';
+
+    var options = {
+      uri: Url,
+      method: 'POST',
+      json: true,
+    };
+    rp(options)
+  });
 });
