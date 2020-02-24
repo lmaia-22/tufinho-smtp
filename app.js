@@ -23,12 +23,34 @@ const transporter = nodemailer.createTransport({
 
 app.use(bodyParser.json());
 
-app.use(function (req, res, next) {
-  res.status(200);
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin");
+app.use((req, res, next) => {
+  req.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  res.header("Access-Control-Allow-Methods", "GET, POST","PUT", "DELETE");
   next();
 });
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors({
+  origin: true, // "true" will copy the domain of the request back
+  // to the reply. If you need more control than this
+  // use a function.
+  
+  credentials: true, // This MUST be "true" if your endpoint is
+  // authenticated via either a session cookie
+  // or Authorization header. Otherwise the
+  // browser will block the response.
+  
+  methods: 'POST,GET,PUT,OPTIONS,DELETE' // Make sure you're not blocking
+  // pre-flight OPTIONS requests
+}));
+
+app.use(cors());
+app.use(cors(corsOptions));
 
 app.post('/send', function (req, res) {
 
