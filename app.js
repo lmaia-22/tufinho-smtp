@@ -126,7 +126,7 @@ app.post('/kitty', function (req, res) {
 
 app.listen(port, function () {
   console.log('Express started on port: ', port);
-  cron.schedule('* * * * *', () => {
+  cron.schedule('0 9 * * *', () => {
 
     Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
