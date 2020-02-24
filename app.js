@@ -10,10 +10,15 @@ const bodyParser = require('body-parser');
 const transporter = nodemailer.createTransport({
   host: 'mail.smtp2go.com',
   port: 2525,
+  secureConnection: false,
+  requireTLS: true,
   auth: {
       user: 'lmaia-22',
       pass: 'qkixK89TjuZr'
-  }
+  },
+  tls: {
+    ciphers:'SSLv3'
+}
 });
 
 app.use(bodyParser.json());
@@ -123,7 +128,7 @@ app.listen(port, function () {
   console.log('Express started on port: ', port);
   cron.schedule('* * * * *', () => {
 
-    Url = 'http://localhost:3000/kitty';
+    Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
     var options = {
       uri: Url,
