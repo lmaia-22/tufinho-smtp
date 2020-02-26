@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 let cron = require('node-cron');
 var rp = require('request-promise');
 var cors = require('cors');
+var sleep = require('system-sleep');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -95,7 +96,7 @@ app.get('/cat', function (req, res) {
 
       let data = "";
       rp(options)
-      .then(function (resp) {
+      .then(async function handler (resp) {
            console.log("data collected");
            console.log(resp[0]["url"]);
            res.send(resp);
@@ -125,7 +126,7 @@ app.get('/quote', function (req, res) {
   }); 
 
 
-app.post('/kitty', function (req, res) {
+app.post('/kitty', async function handler(req, res) {
 
   var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
   const baseUrl = "https://api.thecatapi.com/v1/images/search";
@@ -151,49 +152,49 @@ app.post('/kitty', function (req, res) {
            console.log("data collected");
            console.log(resp[0]["url"]);
 
-      rp(options1)
-      .then(function (resp1) {
-           console.log("data collected");
-           console.log(resp1.contents.quotes[0].quote);
+        rp(options1)
+        .then(function (resp1) {
+            console.log("data collected");
+            console.log(resp1.contents.quotes[0].quote);
 
-  let mailOptions = {
-    from: 'luismsm14@gmail.com',
-    to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
-    subject: 'Bom dia fofinha!',
-    html: '<h1>Tem um bom dia de trabalho!</h1><h3>Vai-te a eles gatinha assanhada ;)</h3><h2><b>Adoro-te! <3</b></h2>',
-    attachments: [
-        { // Use a URL as an attachment
-          filename: 'Cutecat.png',
-          path: resp[0]["url"]
-      }
-    ]
-  };
-  
-    transporter.sendMail(mailOptions, function (error, response) {
-      if (error) {
-        console.log(error);
-        res.end('error');
-      } else {
-        console.log('Message sent: ', response);
-        res.end('sent');
-      }
-    });
-});
+          let mailOptions = {
+            from: 'luismsm14@gmail.com',
+            to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
+            subject: 'Bom dia fofinha!',
+            html: '<h1>Tem um bom dia de trabalho!</h1><h3>Vai-te a eles gatinha assanhada ;)</h3><h2><b>Adoro-te! <3</b></h2>',
+            attachments: [
+                { // Use a URL as an attachment
+                  filename: 'Cutecat.png',
+                  path: resp[0]["url"]
+              }
+            ]
+          };
+          sleep(5000);
+
+          transporter.sendMail(mailOptions, function (error, response) {
+            if (error) {
+              console.log(error);
+              res.end('error');
+            } else {
+              console.log('Message sent: ', response);
+              res.end('sent');
+            }
+          });
+        });
       });
-    });
+  });
 
 app.listen(port, function () {
   console.log('Express started on port: ', port);
   //cron.schedule('00 15 * * *', () => {
-
+    Urltest = 'http://localhost:3000/kitty';
     Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
     var options = {
-      uri: Url,
+      uri: Urltest,
       method: 'POST',
       json: true,
     };
-    
     rp(options)
   //});
 });
