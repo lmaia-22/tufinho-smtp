@@ -28,6 +28,7 @@ app.use((req, res, next) => {
   req.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
   res.header("Access-Control-Allow-Methods", "GET, POST","PUT", "DELETE");
+  next();
 });
 
 var corsOptions = {
@@ -159,7 +160,7 @@ app.post('/kitty', function(req, res) {
               }
             ]
           };
-          sleep(5000);
+          sleep(2000);
 
           transporter.sendMail(mailOptions, function (error, response) {
             if (error) {
@@ -187,7 +188,7 @@ app.listen(port, function () {
       json: true,
     };
     rp(options).then(function () {
-        process.exit(0);
+     process.exit(0);
     });
   //});
 });
