@@ -1,6 +1,5 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
-let cron = require('node-cron');
 var rp = require('request-promise');
 var cors = require('cors');
 var sleep = require('system-sleep');
@@ -29,7 +28,6 @@ app.use((req, res, next) => {
   req.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
   res.header("Access-Control-Allow-Methods", "GET, POST","PUT", "DELETE");
-  next();
 });
 
 var corsOptions = {
@@ -84,7 +82,6 @@ app.get('/cat', function (req, res) {
 
   var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
   const baseUrl = "https://api.thecatapi.com/v1/images/search";
-
       var options = {
         uri: baseUrl,
         method: 'GET',
@@ -93,40 +90,35 @@ app.get('/cat', function (req, res) {
           'x-api-key': apiKey
         }
       };
-
-      let data = "";
       rp(options)
       .then(async function handler (resp) {
            console.log("data collected");
            console.log(resp[0]["url"]);
            res.send(resp);
       });
-  }); 
+}); 
 
 //quote API
 
 app.get('/quote', function (req, res) {
 
   const baseUrl1 = "https://quotes.rest/qod.json?category=inspire";
-
   var options1 = {
     uri: baseUrl1,
     method: 'GET',
     json: true,
   }
-
   rp(options1)
   .then(function (resp1) {
        console.log("data collected");
        //console.log(resp1.contents.quotes[0]);
        console.log(resp1.contents.quotes[0].quote);
        res.send(resp1);
-  });
-      
-  }); 
+  });   
+}); 
 
 
-app.post('/kitty', async function handler(req, res) {
+app.post('/kitty', function(req, res) {
 
   var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
   const baseUrl = "https://api.thecatapi.com/v1/images/search";
@@ -194,7 +186,6 @@ app.listen(port, function () {
       json: true,
     };
     rp(options).then(function () {
-        console.log("exit");
         process.exit(0);
     });
   //});
