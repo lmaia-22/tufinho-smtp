@@ -149,17 +149,15 @@ app.post('/kitty', async function handler(req, res) {
 
       rp(options)
       .then(function (resp) {
-           console.log("data collected");
            console.log(resp[0]["url"]);
 
         rp(options1)
         .then(function (resp1) {
-            console.log("data collected");
             console.log(resp1.contents.quotes[0].quote);
 
           let mailOptions = {
             from: 'luismsm14@gmail.com',
-            to: 'sgg4@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
+            to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
             subject: 'Bom dia fofinha!',
             html: '<h1>Tem um bom dia de trabalho!</h1><h3>Vai-te a eles gatinha assanhada ;)</h3><h2><b>Adoro-te! <3</b></h2>',
             attachments: [
@@ -191,10 +189,13 @@ app.listen(port, function () {
     Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
     var options = {
-      uri: Url,
+      uri: Urltest,
       method: 'POST',
       json: true,
     };
-    rp(options)
+    rp(options).then(function () {
+        console.log("exit");
+        process.exit(0);
+    });
   //});
 });
