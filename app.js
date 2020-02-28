@@ -119,7 +119,7 @@ app.get('/quote', function (req, res) {
 }); 
 
 
-app.post('/kitty', function(req, res) {
+app.post('/kitty', async function(req, res) {
 
   var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
   const baseUrl = "https://api.thecatapi.com/v1/images/search";
@@ -140,11 +140,11 @@ app.post('/kitty', function(req, res) {
         json: true,
       }
 
-      rp(options)
+      await rp(options)
       .then(function (resp) {
            console.log(resp[0]["url"]);
 
-        rp(options1)
+        await rp(options1)
         .then(function (resp1) {
             console.log(resp1.contents.quotes[0].quote);
 
@@ -161,7 +161,7 @@ app.post('/kitty', function(req, res) {
             ]
           };
 
-          transporter.sendMail(mailOptions, function (error, response) {
+          await transporter.sendMail(mailOptions, function (error, response) {
             if (error) {
               console.log(error);
               res.end('error');
@@ -178,16 +178,23 @@ app.post('/kitty', function(req, res) {
 
 app.listen(port, function () {
   console.log('Express started on port: ', port);
-    Urltest = 'http://localhost:3000/kitty';
-    Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
-    var options = {
-      uri: Url,
-      method: 'POST',
-      json: true,
-    };
-    rp(options)
-    .then(function () {
-      process.exit(0);
-    });
-});
+    var  Urltest = 'http://localhost:3000/kitty';
+    var  Url = 'https://smtp-tufinho.herokuapp.com/kitty';
+
+     var options = {
+       uri: Url,
+       method: 'POST',
+       json: true,
+     };
+     try{
+      rp(options)
+      .then(function () {
+        process.exit(0);
+      });
+    }catch(err){
+      console.log("sending email")
+      console.log(err)
+    }
+ });
+
