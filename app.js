@@ -177,15 +177,13 @@ app.post('/kitty', function(req, res) {
 
 app.listen(port, function () {
   console.log('Express started on port: ', port);
-  //cron.schedule('00 15 * * *', () => {
     Urltest = 'http://localhost:3000/kitty';
     Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
     var options = {
-      uri: Urltest,
+      uri: Url,
       method: 'POST',
       json: true,
     };
     rp(options);
-  //});
 });
