@@ -186,6 +186,6 @@ app.listen(port, function () {
       method: 'POST',
       json: true,
     };
-    rp(options).cancel();
+    rp(options);
   //});
 });
