@@ -119,7 +119,7 @@ app.get('/quote', function (req, res) {
 }); 
 
 
-app.post('/kitty', async function(req, res) {
+app.post('/kitty', function(req, res) {
 
   var apiKey = '13a61609-48f3-44ee-8f4c-75814936f2a6';    
   const baseUrl = "https://api.thecatapi.com/v1/images/search";
@@ -140,11 +140,11 @@ app.post('/kitty', async function(req, res) {
         json: true,
       }
 
-      await rp(options)
+      rp(options)
       .then(function (resp) {
            console.log(resp[0]["url"]);
 
-        await rp(options1)
+        rp(options1)
         .then(function (resp1) {
             console.log(resp1.contents.quotes[0].quote);
 
@@ -161,7 +161,7 @@ app.post('/kitty', async function(req, res) {
             ]
           };
 
-          await transporter.sendMail(mailOptions, function (error, response) {
+          transporter.sendMail(mailOptions, function (error, response) {
             if (error) {
               console.log(error);
               res.end('error');
@@ -176,7 +176,7 @@ app.post('/kitty', async function(req, res) {
       });
   });
 
-app.listen(port, function () {
+app.listen(port, async function handler() {
   console.log('Express started on port: ', port);
 
     var  Urltest = 'http://localhost:3000/kitty';
@@ -188,7 +188,7 @@ app.listen(port, function () {
        json: true,
      };
      try{
-      rp(options)
+      await rp(options)
       .then(function () {
         process.exit(0);
       });
