@@ -92,7 +92,7 @@ app.get('/cat', function (req, res) {
         }
       };
       rp(options)
-      .then(async function handler (resp) {
+      .then(function (resp) {
            console.log("data collected");
            console.log(resp[0]["url"]);
            res.send(resp);
@@ -185,5 +185,8 @@ app.listen(port, function () {
       method: 'POST',
       json: true,
     };
-    rp(options);
+    rp(options)
+    .then(function (resp) {
+      process.exit(0);
+    });
 });
