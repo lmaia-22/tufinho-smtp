@@ -165,6 +165,7 @@ app.post('/kitty', function(req, res) {
             if (error) {
               console.log(error);
               res.end('error');
+              process.exit(0);
             } else {
               console.log('Message sent: ', response);
               res.end('sent');
@@ -186,7 +187,7 @@ app.listen(port, function () {
       json: true,
     };
     rp(options)
-    .then(function (resp) {
+    .then(function () {
       process.exit(0);
     });
 });
