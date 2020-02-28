@@ -150,7 +150,7 @@ app.post('/kitty', function(req, res) {
 
           let mailOptions = {
             from: 'luismsm14@gmail.com',
-            to: 'sgg4@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
+            to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
             subject: 'Bom dia fofinha!',
             html: '<h1>Tem um bom dia de trabalho!</h1><h3>Vai-te a eles gatinha assanhada ;)</h3><h2><b>Adoro-te! <3</b></h2>',
             attachments: [
@@ -160,7 +160,6 @@ app.post('/kitty', function(req, res) {
               }
             ]
           };
-          sleep(2000);
 
           transporter.sendMail(mailOptions, function (error, response) {
             if (error) {
@@ -183,12 +182,10 @@ app.listen(port, function () {
     Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
     var options = {
-      uri: Url,
+      uri: Urltest,
       method: 'POST',
       json: true,
     };
-    rp(options).then(function () {
-     process.exit(0);
-    });
+    rp(options).cancel();
   //});
 });
