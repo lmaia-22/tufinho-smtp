@@ -186,9 +186,11 @@ app.listen(port, async function handler() {
        method: 'POST',
        json: true,
      };
+
      try{
       await rp(options)
       .then(function () {
+        console.log("sucess")
       });
     }catch(err){
       console.log("sending email")
