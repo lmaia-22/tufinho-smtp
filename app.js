@@ -169,7 +169,6 @@ app.post('/kitty', function(req, res) {
             } else {
               console.log('Message sent: ', response);
               res.end('sent');
-              process.exit(0);
             }
           });
         });
@@ -190,7 +189,6 @@ app.listen(port, async function handler() {
      try{
       await rp(options)
       .then(function () {
-        process.exit(0);
       });
     }catch(err){
       console.log("sending email")
