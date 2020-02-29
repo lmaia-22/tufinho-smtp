@@ -154,6 +154,7 @@ app.post('/kitty', function(req, res) {
             subject: 'Bom dia fofinha!',
             html: '<h1>Tem um bom dia de trabalho!</h1>'+
             '<h3>Mostra a todos porque és a pessoa mais incrível que já conheci!</h3>'+ 
+            '<h3>Estarei sempre esperando por ti, ao final do dia, com o abraço mais apertado e carinhoso do mundo!</h3>'+
             '<h2 style="color:red;"><b>Adoro-te! <3</b></h2>',
             attachments: [
                 { // Use a URL as an attachment
