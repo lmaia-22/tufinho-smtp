@@ -152,7 +152,9 @@ app.post('/kitty', function(req, res) {
             from: 'luismsm14@gmail.com',
             to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
             subject: 'Bom dia fofinha!',
-            html: '<h1>Tem um bom dia de trabalho!</h1><h3>Vai-te a eles gatinha assanhada ;)</h3><h2><b>Adoro-te! <3</b></h2>',
+            html: '<h1>Tem um bom dia de trabalho!</h1>'+
+            '<h3>Mostra a todos porque és a pessoa mais incrível que já conheci!</h3>'+ 
+            '<h2 style="color:red;"><b>Adoro-te! <3</b></h2>',
             attachments: [
                 { // Use a URL as an attachment
                   filename: 'Cutecat.png',
