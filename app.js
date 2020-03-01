@@ -150,14 +150,11 @@ app.post('/kitty', function(req, res) {
 
           let mailOptions = {
             from: 'luismsm14@gmail.com',
-            to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
+            to: 'sgg4@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
             subject: 'Bom dia fofinha!',
             html: '<h1>Tem um bom dia de trabalho!</h1>'+
             '<h3>Mostra a todos a razão pela qual és a pessoa mais incrível que conheço!</h3>'+ 
             '<h3>Estarei sempre esperando por ti, no final do dia de trabalho, com o abraço mais apertado e carinhoso do mundo!</h3>'+
-            '<video width="320" height="240">'+
-            '<source src="https://smtp-tufinho.herokuapp.com/hug.mp4" type="video/mp4">'+
-            '</video>'+
             '<h2 style="color:red;"><b>Adoro-te! <3</b></h2>',
             attachments: [
                 { // Use a URL as an attachment
