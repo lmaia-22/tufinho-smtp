@@ -150,7 +150,7 @@ app.post('/kitty', function(req, res) {
 
           let mailOptions = {
             from: 'luismsm14@gmail.com',
-            to: 'lmaia@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
+            to: 'sgg4@casadamusica.com', // Enter here the email address on which you want to send emails from your customers
             subject: 'Bom dia fofinha!',
             html: '<h1>Tem um bom dia de trabalho!</h1>'+
             '<h3>Mostra a todos a razão pela qual és a pessoa mais incrível que conheço!</h3>'+ 
