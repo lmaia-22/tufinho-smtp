@@ -181,23 +181,23 @@ app.post('/kitty', function(req, res) {
 app.listen(port, async function handler() {
   console.log('Express started on port: ', port);
 
-    var  Urltest = 'http://localhost:3000/kitty';
-    var  Url = 'https://smtp-tufinho.herokuapp.com/kitty';
+    // var  Urltest = 'http://localhost:3000/kitty';
+    // var  Url = 'https://smtp-tufinho.herokuapp.com/kitty';
 
-     var options = {
-       uri: Url,
-       method: 'POST',
-       json: true,
-     };
+    //  var options = {
+    //    uri: Url,
+    //    method: 'POST',
+    //    json: true,
+    //  };
 
-     try{
-      await rp(options)
-      .then(function () {
-        console.log("sucess")
-      });
-    }catch(err){
-      console.log("sending email")
-      console.log(err)
-    }
+    //  try{
+    //   await rp(options)
+    //   .then(function () {
+    //     console.log("sucess")
+    //   });
+    // }catch(err){
+    //   console.log("sending email")
+    //   console.log(err)
+    // }
  });
 
