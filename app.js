@@ -155,7 +155,7 @@ app.post('/kitty', function(req, res) {
             html: '<h1>Tem um bom dia de trabalho!</h1>'+
             '<h3>Mostra a todos a razão pela qual és a pessoa mais incrível que conheço!</h3>'+ 
             '<h3>Estarei sempre esperando por ti, no final do dia de trabalho, com o abraço mais apertado e carinhoso do mundo!</h3>'+
-            '<a href="https://www.youtube.com/watch?v=2mf936yeLx8&feature=youtu.be&t=1">Para ajudar a começares o dia com um sorriso pepsodent</a>'+
+            '<a href="https://lmaia-22.github.io/tufinho/assets/tom_jerry.mp4">Para ajudar a começares o dia com um sorriso pepsodent</a>'+
             '<h2 style="color:red;"><b>Adoro-te! <3</b></h2>',
             attachments: [
                 { // Use a URL as an attachment
